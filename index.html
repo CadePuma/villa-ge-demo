@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VILLA…GE Sport & Experience</title>
+<meta name="description" content="VILLA…GE Sport & Experience a Villa Verucchio (Rimini): beach tennis, beach volley, foot volley, tennis, calcetto e calciotto. Prenota il campo online in pochi secondi.">
+<meta name="theme-color" content="#0A0B08">
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: una sola colonna, sezioni brevi; la linea neon del campo è l'unico elemento forte. Tema scuro unico per scelta del brand. */
+:root{
+  --ink:#0A0B08; --coal:#13150F; --ash:#1C1F17; --line:#2A2E22;
+  --mute:#A3A994; --bone:#F2F4EA; --neon:#E5FE00; --wa:#25D366; --err:#FF7A59;
+  --f-display:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+  --f-body:Barlow,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+[hidden]{display:none!important}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+html{background:var(--ink);-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--f-body);font-size:17px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+.wrap{max-width:1080px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-transform:uppercase;line-height:.95;text-wrap:balance}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--neon)}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--neon);outline-offset:3px;border-radius:10px}
+::selection{background:var(--neon);color:var(--ink)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:56px;padding:0 1.5rem;border-radius:999px;font-weight:700;font-size:1.05rem;transition:transform .15s,box-shadow .2s,opacity .2s;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.btn:active{transform:scale(.97)}
+.btn-neon{background:var(--neon);color:var(--ink)}
+.btn-neon:hover{box-shadow:0 10px 32px rgba(229,254,0,.28)}
+.btn-wa{background:var(--wa);color:#06210f}
+.btn-line{border:1.5px solid var(--line);color:var(--bone)}
+.btn-line:hover{border-color:var(--neon)}
+
+#hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background-color .25s,border-color .25s;border-bottom:1px solid transparent}
+#hdr.solid{background:rgba(10,11,8,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+
+.glow{background:radial-gradient(60% 50% at 85% 0%,rgba(229,254,0,.16),transparent 70%)}
+.hero-title{font-size:clamp(3.4rem,15vw,7.5rem);font-weight:900}
+.courtline{height:3px;width:72px;background:var(--neon);border-radius:3px}
+.draw path{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:draw 1.3s cubic-bezier(.6,.1,.2,1) forwards}
+.draw path:nth-child(2){animation-delay:.12s}.draw path:nth-child(3){animation-delay:.24s}.draw path:nth-child(4){animation-delay:.36s}
+.draw circle{transform-box:fill-box;transform-origin:center;animation:pop .45s .85s both cubic-bezier(.3,1.6,.5,1)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{transform:scale(0)}}
+
+.tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.25rem;border-radius:22px;background:var(--coal);border:1.5px solid var(--line);text-align:left;transition:border-color .2s,transform .2s,opacity .8s ease;touch-action:manipulation}
+.tile:hover{border-color:var(--neon)}
+.tile .ico{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:rgba(229,254,0,.1);color:var(--neon);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.tile:hover .ico{transform:rotate(-8deg) scale(1.06)}
+
+/* comparsa allo scroll */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1),border-color .2s;transition-delay:var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.in:active{transform:scale(.98);transition-delay:0ms}
+
+/* maschera prenotazione */
+.sheet-wrap{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center}
+.sheet-wrap[hidden]{display:none!important}
+.backdrop{position:absolute;inset:0;background:rgba(4,5,3,.7);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);transition:opacity .3s}
+.sheet{position:relative;width:100%;max-width:560px;height:calc(100% - env(safe-area-inset-top,0px) - 10px);display:flex;flex-direction:column;background:var(--coal);border:1px solid var(--line);border-bottom:0;border-radius:26px 26px 0 0;transition:transform .3s cubic-bezier(.2,.9,.25,1)}
+.sheet.enter{transform:translateY(100%)}
+.sheet-body{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+@media (min-width:768px){.sheet-wrap{align-items:center}.sheet{height:min(820px,calc(100% - 40px));border-radius:26px;border-bottom:1px solid var(--line)}}
+
+.pick{display:flex;align-items:center;gap:.75rem;min-height:64px;padding:.75rem;border-radius:16px;background:var(--ash);border:2px solid transparent;text-align:left;transition:border-color .15s,background-color .15s,transform .12s;touch-action:manipulation}
+.pick:active{transform:scale(.97)}
+.pick[aria-checked="true"]{border-color:var(--neon);background:rgba(229,254,0,.08)}
+.pick .ico{width:40px;height:40px;flex-shrink:0;color:var(--neon)}
+.day{flex-shrink:0;min-width:78px;min-height:68px;padding:0 .5rem;border-radius:16px;background:var(--ash);display:grid;place-content:center;text-align:center;touch-action:manipulation;transition:background-color .15s,color .15s}
+.day[aria-checked="true"]{background:var(--neon);color:var(--ink)}
+.slot{min-height:52px;border-radius:14px;background:var(--ash);font-weight:700;font-size:1.05rem;touch-action:manipulation;transition:background-color .15s,color .15s,transform .12s}
+.slot:active:not(:disabled){transform:scale(.95)}
+.slot[aria-checked="true"]{background:var(--neon);color:var(--ink)}
+.slot:disabled{opacity:.3;text-decoration:line-through}
+.field{width:100%;min-height:56px;padding:0 1rem;border-radius:16px;background:var(--ash);border:2px solid transparent;color:var(--bone);font-size:17px}
+.field:focus{outline:none;border-color:var(--neon)}
+.field::placeholder{color:#6f7563}
+.step-n{width:28px;height:28px;flex-shrink:0;border-radius:999px;display:grid;place-items:center;font-weight:700;font-size:.85rem;background:var(--ash);color:var(--mute);transition:background-color .2s,color .2s}
+.done .step-n{background:var(--neon);color:var(--ink)}
+.flash{animation:flash .9s ease;border-radius:16px}
+@keyframes flash{0%,100%{box-shadow:0 0 0 0 transparent}30%{box-shadow:0 0 0 3px var(--err)}}
+.spin{width:36px;height:36px;margin:0 auto;border-radius:50%;border:3px solid var(--line);border-top-color:var(--neon);animation:spin .9s linear infinite}
+.spin.sm{width:20px;height:20px;border-width:2.5px;border-color:rgba(10,11,8,.25);border-top-color:var(--ink);margin:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lbl{display:block;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:.4rem}
+.err{color:var(--err);font-weight:600;font-size:.95rem}
+.field[aria-invalid="true"]{border-color:var(--err)}
+.big-ico{width:72px;height:72px;margin:0 auto;border-radius:50%;display:grid;place-items:center;background:rgba(229,254,0,.12);color:var(--neon)}
+.big-ico.bad{background:rgba(255,122,89,.14);color:var(--err)}
+.v{animation:vin .28s ease}
+@keyframes vin{from{opacity:0;transform:translateX(14px)}}
+.no-sb{scrollbar-width:none}
+fieldset{min-width:0;border:0;padding:0;margin:0}.no-sb::-webkit-scrollbar{display:none}
+
+#fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;transition:transform .3s,opacity .3s}
+#fab.away{transform:translateY(120px);opacity:0;pointer-events:none}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:95;transform:translate(-50%,160px);transition:transform .35s cubic-bezier(.2,.9,.25,1);width:max-content;max-width:calc(100% - 32px);text-align:center}
+#toast.show{transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .draw path{stroke-dashoffset:0}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<style id="tailwind">*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.pointer-events-none{pointer-events:none}.absolute{position:absolute}.relative{position:relative}.-bottom-12{bottom:-3rem}.-right-10{right:-2.5rem}.right-4{right:1rem}.top-4{top:1rem}.col-span-4{grid-column:span 4 / span 4}.-mx-5{margin-left:-1.25rem;margin-right:-1.25rem}.mx-auto{margin-left:auto;margin-right:auto}.-mt-1{margin-top:-0.25rem}.-mt-2{margin-top:-0.5rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mt-1{margin-top:0.25rem}.mt-12{margin-top:3rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-2\.5{height:0.625rem}.h-24{height:6rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-72{height:18rem}.h-9{height:2.25rem}.\!min-h-\[44px\]{min-height:44px !important}.min-h-\[1\.3em\]{min-height:1.3em}.min-h-\[44px\]{min-height:44px}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-14{width:3.5rem}.w-2\.5{width:0.625rem}.w-24{width:6rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-72{width:18rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.select-all{-webkit-user-select:all;user-select:all}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.flex-col-reverse{flex-direction:column-reverse}.place-items-center{place-items:center}.content-start{align-content:flex-start}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-7{gap:1.75rem}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-line > :not([hidden]) ~ :not([hidden]){--tw-divide-opacity:1;border-color:rgb(42 46 34 / var(--tw-divide-opacity, 1))}.justify-self-start{justify-self:start}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.border{border-width:1px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-line{--tw-border-opacity:1;border-color:rgb(42 46 34 / var(--tw-border-opacity, 1))}.bg-\[\#25D366\]{--tw-bg-opacity:1;background-color:rgb(37 211 102 / var(--tw-bg-opacity, 1))}.bg-ash{--tw-bg-opacity:1;background-color:rgb(28 31 23 / var(--tw-bg-opacity, 1))}.bg-bone{--tw-bg-opacity:1;background-color:rgb(242 244 234 / var(--tw-bg-opacity, 1))}.bg-coal{--tw-bg-opacity:1;background-color:rgb(19 21 15 / var(--tw-bg-opacity, 1))}.bg-ink{--tw-bg-opacity:1;background-color:rgb(10 11 8 / var(--tw-bg-opacity, 1))}.bg-line{--tw-bg-opacity:1;background-color:rgb(42 46 34 / var(--tw-bg-opacity, 1))}.bg-neon{--tw-bg-opacity:1;background-color:rgb(229 254 0 / var(--tw-bg-opacity, 1))}.\!p-4{padding:1rem !important}.p-4{padding:1rem}.p-5{padding:1.25rem}.\!px-5{padding-left:1.25rem !important;padding-right:1.25rem !important}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-1{padding-bottom:0.25rem}.pb-14{padding-bottom:3.5rem}.pb-24{padding-bottom:6rem}.pb-4{padding-bottom:1rem}.pt-3{padding-top:0.75rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-display{font-family:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif}.\!text-base{font-size:1rem !important;line-height:1.5rem !important}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.leading-tight{line-height:1.25}.tracking-\[\.14em\]{letter-spacing:.14em}.tracking-wide{letter-spacing:0.025em}.text-\[\#06210f\]{--tw-text-opacity:1;color:rgb(6 33 15 / var(--tw-text-opacity, 1))}.text-\[\#25D366\]{--tw-text-opacity:1;color:rgb(37 211 102 / var(--tw-text-opacity, 1))}.text-bone{--tw-text-opacity:1;color:rgb(242 244 234 / var(--tw-text-opacity, 1))}.text-ink{--tw-text-opacity:1;color:rgb(10 11 8 / var(--tw-text-opacity, 1))}.text-mute{--tw-text-opacity:1;color:rgb(163 169 148 / var(--tw-text-opacity, 1))}.text-neon{--tw-text-opacity:1;color:rgb(229 254 0 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-10{opacity:0.1}.opacity-60{opacity:0.6}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:text-bone:hover{--tw-text-opacity:1;color:rgb(242 244 234 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:flex{display:flex}}@media (min-width: 768px){.md\:flex{display:flex}.md\:h-40{height:10rem}.md\:h-\[420px\]{height:420px}.md\:w-40{width:10rem}.md\:w-\[420px\]{width:420px}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:p-6{padding:1.5rem}.md\:py-24{padding-top:6rem;padding-bottom:6rem}.md\:pb-20{padding-bottom:5rem}.md\:pt-16{padding-top:4rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-8xl{font-size:6rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}</style>
+</head>
+<body>
+<!-- Logo rivisitato dall'allegato e icone sport -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 100 100">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.5">
+      <path d="M52 12 L78 28 Q82 31 78 35 L60 48 Q55 53 61 55 L74 56 Q80 58 74 62 L54 76"/>
+      <path d="M90 34 Q66 44 56 60 L30 96"/>
+      <path d="M6 58 Q28 48 40 50 Q44 52 41 58 L28 94"/>
+      <path d="M7 60 Q20 60 34 64"/>
+    </g>
+    <circle cx="86" cy="24" r="5.5" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-bt" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><ellipse cx="19" cy="18" rx="11" ry="12.5" transform="rotate(-35 19 18)"/><path d="M26 27l12 12"/></g><circle cx="38" cy="10" r="3.5" fill="currentColor"/></symbol>
+  <symbol id="i-bv" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="24" r="17"/><path d="M24 7c-5 9-5 25 0 34M7.5 21c10-3 22 1 30 11M10 35c5-10 17-18 29-18"/></g></symbol>
+  <symbol id="i-tn" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="24" cy="24" r="17"/><path d="M11 12c7 6 7 18 0 24M37 12c-7 6-7 18 0 24"/></g></symbol>
+  <symbol id="i-cc" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><path d="M24 7v9M31 21l9-3M28.3 29l5 7M19.7 29l-5 7M17 21l-9-3"/></g><path d="M24 16l7 5-2.7 8h-8.6L17 21z" fill="currentColor"/></symbol>
+  <symbol id="i-goal" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38V12h36v26"/><path d="M6 20h36M6 29h36M15 12v26M24 12v26M33 12v26" stroke-width="1.6" opacity=".7"/><path d="M2 38h44"/></g><circle cx="34" cy="40" r="4" fill="currentColor"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+</svg>
+
+<header id="hdr">
+  <div class="wrap flex items-center justify-between h-16">
+    <a href="#top" class="flex items-center gap-2.5" aria-label="VILLA…GE, torna all'inizio">
+      <span class="w-10 h-10 rounded-full bg-neon text-ink grid place-items-center"><svg class="w-7 h-7" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg></span>
+      <span class="font-display font-black text-xl tracking-wide leading-none">VILLA…GE</span>
+    </a>
+    <nav aria-label="Sezioni" class="hidden md:flex items-center gap-7 text-mute font-semibold">
+      <a href="#sport" class="hover:text-bone">Sport</a>
+      <a href="#tornei" class="hover:text-bone">Tornei</a>
+      <a href="#bar" class="hover:text-bone">Terzo tempo</a>
+      <a href="#info" class="hover:text-bone">Orari</a>
+    </nav>
+    <button class="btn btn-neon !min-h-[44px] !px-5 !text-base" data-book>Prenota</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="relative overflow-hidden glow">
+    <div class="wrap pt-8 pb-14 md:pt-16 md:pb-20">
+      <p class="inline-flex items-center gap-2 rounded-full bg-coal border border-line px-3 py-1.5 text-sm font-semibold">
+        <span id="openDot" class="w-2.5 h-2.5 rounded-full bg-neon"></span><span id="openTxt">Villa Verucchio · Rimini</span>
+      </p>
+      <div class="flex items-start justify-between gap-4 mt-6">
+        <h1 class="hero-title">Prenota.<br>Gioca.<br><span class="text-neon">Resta.</span></h1>
+        <svg viewBox="0 0 100 100" class="draw w-24 h-24 md:w-40 md:h-40 text-neon shrink-0 mt-2" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+            <path style="--l:160" d="M52 12 L78 28 Q82 31 78 35 L60 48 Q55 53 61 55 L74 56 Q80 58 74 62 L54 76"/>
+            <path style="--l:90" d="M90 34 Q66 44 56 60 L30 96"/>
+            <path style="--l:110" d="M6 58 Q28 48 40 50 Q44 52 41 58 L28 94"/>
+            <path style="--l:40" d="M7 60 Q20 60 34 64"/>
+          </g>
+          <circle cx="86" cy="24" r="5.5" fill="currentColor"/>
+        </svg>
+      </div>
+      <p class="mt-6 text-lg text-mute max-w-md">Sei sport tra sabbia ed erba sintetica, al Parco Marecchia di Villa Verucchio. Prenoti online in pochi secondi, quando vuoi.</p>
+      <div class="mt-8 grid sm:flex gap-3">
+        <button class="btn btn-neon" data-book>Prenota un campo</button>
+        <a class="btn btn-line" id="waHero" target="_blank" rel="noopener"><svg class="w-5 h-5 text-[#25D366]" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Scrivici</a>
+      </div>
+      <dl class="mt-12 grid grid-cols-3 gap-4 max-w-md">
+        <div class="flex flex-col-reverse"><dt class="text-sm text-mute">sport</dt><dd class="font-display font-black text-4xl num"><span data-count="6">6</span></dd></div>
+        <div class="flex flex-col-reverse"><dt class="text-sm text-mute">superfici</dt><dd class="font-display font-black text-4xl num"><span data-count="2">2</span></dd></div>
+        <div class="flex flex-col-reverse"><dt class="text-sm text-mute">luci fino alle</dt><dd class="font-display font-black text-4xl num"><span data-count="23">23</span>:00</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="sport" class="py-16 md:py-24 border-t border-line">
+    <div class="wrap">
+      <div class="rv"><p class="kicker">Tocca e prenota</p><h2 class="text-5xl md:text-6xl font-black mt-2">I nostri sport</h2><div class="courtline mt-4"></div></div>
+      <div id="tiles" class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-8"></div>
+    </div>
+  </section>
+
+  <section id="tornei" class="py-16 md:py-24 bg-coal border-y border-line">
+    <div class="wrap">
+      <div class="rv"><p class="kicker">In programma</p><h2 class="text-5xl md:text-6xl font-black mt-2">Tornei</h2><div class="courtline mt-4"></div></div>
+      <ul id="events" class="grid md:grid-cols-3 gap-3 mt-8" role="list"></ul>
+    </div>
+  </section>
+
+  <section id="bar" class="relative overflow-hidden bg-neon text-ink py-16 md:py-24">
+    <svg class="absolute -right-10 -bottom-12 w-72 h-72 md:w-[420px] md:h-[420px] opacity-10 pointer-events-none" width="288" height="288" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg>
+    <div class="wrap relative">
+      <p class="rv text-sm font-bold tracking-[.14em] uppercase">Bar &amp; relax</p>
+      <h2 class="rv text-6xl md:text-8xl font-black mt-2" style="--d:80ms">Terzo tempo</h2>
+      <p class="rv mt-5 text-lg font-medium max-w-md" style="--d:160ms">Birra alla spina, piadina e aperitivi a bordo campo. La partita finisce, la serata no.</p>
+    </div>
+  </section>
+
+  <section id="info" class="py-16 md:py-24">
+    <div class="wrap">
+      <div class="rv"><p class="kicker">Info</p><h2 class="text-5xl md:text-6xl font-black mt-2">Orari e contatti</h2><div class="courtline mt-4"></div></div>
+      <div class="grid md:grid-cols-2 gap-3 mt-8">
+        <div class="rv rounded-3xl bg-coal border border-line p-5 md:p-6">
+          <h3 class="text-2xl font-black">Orari</h3>
+          <ul id="hours" class="mt-3 divide-y divide-line num" role="list"></ul>
+        </div>
+        <div class="rv rounded-3xl bg-coal border border-line p-5 md:p-6 grid gap-3 content-start" style="--d:100ms">
+          <h3 class="text-2xl font-black">Dove siamo</h3>
+          <p class="text-mute -mt-1">Via Casetti, Parco Marecchia<br>Villa Verucchio (RN)</p>
+          <a class="btn btn-wa w-full" id="waInfo" target="_blank" rel="noopener"><svg class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Scrivici su WhatsApp</a>
+          <a class="btn btn-line w-full" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Villa-ge+Via+Casetti+Villa+Verucchio+RN">Apri in Maps</a>
+          <ul class="grid gap-1 text-sm text-mute text-center">
+            <li>Cellulare: <a id="tel" class="font-semibold text-bone select-all"></a></li>
+            <li>Fisso: <a id="tel2" class="font-semibold text-bone select-all"></a></li>
+            <li>Email: <span id="mail" class="font-semibold text-bone select-all"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-line">
+  <div class="wrap py-8 pb-24 flex items-center gap-3 text-sm text-mute">
+    <svg class="w-7 h-7 text-neon shrink-0" width="28" height="28" viewBox="0 0 100 100" aria-hidden="true"><use href="#logo"/></svg>
+    <span>© <span id="yr"></span> VILLA…GE Sport &amp; Experience · Via Casetti, Parco Marecchia · Villa Verucchio (RN)</span>
+  </div>
+</footer>
+
+<a id="fab" target="_blank" rel="noopener" class="w-14 h-14 rounded-full bg-[#25D366] text-[#06210f] grid place-items-center shadow-2xl" aria-label="Scrivici su WhatsApp"><svg class="w-7 h-7" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a>
+<div id="toast" role="status" aria-live="polite" class="rounded-2xl bg-bone text-ink font-semibold px-5 py-3 shadow-2xl"></div>
+
+<!-- PRENOTAZIONE: collegata direttamente al gestionale del centro -->
+<div id="book" class="sheet-wrap" hidden role="dialog" aria-modal="true" aria-labelledby="bkTitle">
+  <div class="backdrop" data-close></div>
+  <div class="sheet enter" id="sheet">
+    <div id="sheetHead" class="px-5 pt-3 pb-4 border-b border-line">
+      <div class="mx-auto w-10 h-1.5 rounded-full bg-line mb-3" aria-hidden="true"></div>
+      <div class="flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <h2 id="bkTitle" class="text-4xl font-black" tabindex="-1">Prenota</h2>
+          <p id="bkSub" class="text-sm text-mute truncate">Scorri a destra per tornare indietro</p>
+        </div>
+        <button id="bkClose" class="w-12 h-12 shrink-0 rounded-full bg-ash grid place-items-center" data-close aria-label="Chiudi">
+          <svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="sheet-body px-5 py-5" id="bkBody" aria-live="polite">
+
+      <section data-v="load" class="v grid gap-4 text-center py-24" hidden>
+        <div class="spin" aria-hidden="true"></div>
+        <p id="loadMsg" class="text-mute font-semibold">Un attimo…</p>
+      </section>
+
+      <section data-v="email" class="v grid gap-5" hidden>
+        <div>
+          <h3 class="text-3xl font-black">Con che email prenoti?</h3>
+          <p class="text-mute mt-1">Ti riconosciamo dall'email. Se è la prima volta, ti mandiamo un link personale per entrare. Hai già il link? Puoi anche incollarlo qui.</p>
+        </div>
+        <form id="fEmailForm" novalidate>
+          <label class="lbl" for="fEmail">Email</label>
+          <input id="fEmail" class="field" type="email" inputmode="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="nome@email.it" maxlength="200">
+          <p id="eEmail" class="err mt-2" hidden></p>
+        </form>
+        <button type="button" class="pick !p-4" data-go="wa">
+          <span class="w-11 h-11 rounded-full bg-[#25D366] text-[#06210f] grid place-items-center shrink-0"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></span>
+          <span class="min-w-0 flex-1"><span class="block font-bold">Preferisci WhatsApp?</span><span class="block text-sm text-mute">Mandaci sport e orario, ti confermiamo noi</span></span>
+          <span class="text-neon text-xl" aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <section data-v="card" class="v grid gap-5" hidden>
+        <div>
+          <h3 class="text-3xl font-black">Bentornato!</h3>
+          <p class="text-mute mt-1">Per <b class="text-bone" data-email></b> serve il numero della tua tessera del Villa…ge.</p>
+        </div>
+        <form id="fCardForm" novalidate>
+          <label class="lbl" for="fCard">Numero tessera</label>
+          <input id="fCard" class="field num" inputmode="numeric" autocomplete="off" enterkeyhint="go" placeholder="Es. 1234" maxlength="20">
+          <p id="eCard" class="err mt-2" hidden></p>
+        </form>
+        <div class="grid gap-1">
+          <button type="button" class="justify-self-start min-h-[44px] font-bold text-neon" data-act="remember">Non ricordi il numero? Te lo mandiamo per email</button>
+          <button type="button" class="justify-self-start min-h-[44px] text-mute underline" data-go="email">Usa un'altra email</button>
+        </div>
+      </section>
+
+      <section data-v="register" class="v grid gap-5" hidden>
+        <div>
+          <h3 class="text-3xl font-black">Piacere!</h3>
+          <p class="text-mute mt-1">È la prima volta con <b class="text-bone" data-email></b>. Lasciaci due dati e ti mandiamo il link per prenotare.</p>
+        </div>
+        <form id="fRegForm" novalidate class="grid gap-4">
+          <div><label class="lbl" for="fRegName">Nome</label><input id="fRegName" class="field" autocomplete="given-name" enterkeyhint="next" maxlength="40"></div>
+          <div><label class="lbl" for="fRegSurname">Cognome</label><input id="fRegSurname" class="field" autocomplete="family-name" enterkeyhint="next" maxlength="40"></div>
+          <div>
+            <label class="lbl" for="fRegTel">Cellulare</label>
+            <input id="fRegTel" class="field num" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="send" placeholder="333 123 4567" maxlength="20">
+            <p class="text-sm text-mute mt-1">Lo usiamo solo per contattarti sulle tue prenotazioni.</p>
+          </div>
+          <p id="eReg" class="err" hidden></p>
+        </form>
+        <button type="button" class="justify-self-start min-h-[44px] text-mute underline" data-go="email">Ho sbagliato email</button>
+      </section>
+
+      <section data-v="sent" class="v grid gap-4 text-center py-6" hidden>
+        <div class="big-ico" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+        <h3 class="text-3xl font-black">Controlla la tua email</h3>
+        <p class="text-mute">Ti abbiamo mandato un link a <b class="text-bone" data-email></b>.</p>
+        <ol class="text-left grid gap-2 rounded-2xl bg-ash p-4">
+          <li class="flex gap-3"><span class="step-n">1</span><span>Apri l'email del Villa…ge da questo telefono.</span></li>
+          <li class="flex gap-3"><span class="step-n">2</span><span>Tocca il link: torni qui già pronto per prenotare.</span></li>
+          <li class="flex gap-3"><span class="step-n">3</span><span>Conserva l'email: il link vale anche le prossime volte.</span></li>
+        </ol>
+        <p class="text-sm text-mute">Non la trovi? Guarda nella posta indesiderata.</p>
+        <button type="button" class="btn btn-line" data-go="email">Ho sbagliato email</button>
+      </section>
+
+      <form data-v="book" id="fBook" novalidate class="v grid gap-7" hidden>
+        <fieldset id="bfSport">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">1</span>Che sport?</legend>
+          <div role="radiogroup" aria-label="Sport" class="grid grid-cols-2 gap-2" id="bSport"></div>
+        </fieldset>
+        <fieldset id="bfDay">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">2</span>Che giorno?</legend>
+          <div role="radiogroup" aria-label="Giorno" class="flex gap-2 overflow-x-auto no-sb -mx-5 px-5 pb-1" id="bDay" data-hscroll></div>
+        </fieldset>
+        <fieldset id="bfTime">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">3</span>A che ora inizi?</legend>
+          <div role="radiogroup" aria-label="Ora di inizio" class="grid grid-cols-4 gap-2" id="bTime"></div>
+        </fieldset>
+        <fieldset id="bfDur">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">4</span>Per quanto?</legend>
+          <div role="radiogroup" aria-label="Durata" class="grid grid-cols-4 gap-2" id="bDur"></div>
+        </fieldset>
+        <p id="eBook" class="err rounded-2xl bg-ash p-4" hidden></p>
+        <p class="text-sm text-mute">Non sei <span data-email></span>? <button type="button" class="underline min-h-[44px]" data-act="logout">Esci</button></p>
+      </form>
+
+      <section data-v="result" class="v grid gap-6" hidden>
+        <div class="rounded-3xl bg-ash p-5">
+          <p class="kicker" id="resKicker">Campo libero</p>
+          <h3 class="text-3xl font-black mt-1" id="resWhen"></h3>
+          <p class="text-mute mt-2" id="resInfo"></p>
+        </div>
+        <fieldset id="bfCourt">
+          <legend class="font-bold text-lg mb-3">Scegli il campo</legend>
+          <div role="radiogroup" aria-label="Campo" class="grid gap-2" id="bCourt"></div>
+        </fieldset>
+        <button type="button" class="justify-self-start inline-flex items-center gap-1 min-h-[44px] font-bold text-neon" data-go="book"><span aria-hidden="true">‹</span> Cambia orario</button>
+      </section>
+
+      <section data-v="done" class="v grid gap-4 text-center py-6" hidden>
+        <div class="big-ico" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
+        <h3 class="text-4xl font-black">Prenotato!</h3>
+        <div class="rounded-2xl bg-ash p-4 text-left grid gap-1" id="doneInfo"></div>
+        <p class="text-sm text-mute" id="doneMail"></p>
+        <p class="text-sm text-mute">Per motivi organizzativi il Villa…ge può assegnarti un campo diverso dello stesso sport.</p>
+        <p class="text-sm text-mute">Per spostare o disdire una prenotazione chiamaci al <span class="text-bone font-semibold select-all" data-phone></span> o scrivici su WhatsApp.</p>
+        <button type="button" class="btn btn-neon" data-act="again">Prenota un altro campo</button>
+        <button type="button" class="btn btn-line" data-close>Chiudi</button>
+      </section>
+
+      <section data-v="error" class="v grid gap-4 text-center py-8" hidden>
+        <div class="big-ico bad" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 7v6M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <h3 class="text-3xl font-black" id="errTitle">Qualcosa non va</h3>
+        <p class="text-mute" id="errMsg"></p>
+        <button type="button" class="btn btn-neon" data-act="retry" id="errRetry">Riprova</button>
+        <a class="btn btn-wa" id="errWa" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Prenota su WhatsApp</a>
+        <a class="btn btn-line" id="errClassic" target="_blank" rel="noopener">Apri il modulo di prenotazione</a>
+        <p class="text-sm text-mute">Oppure chiama: <span class="text-bone font-semibold select-all" data-phone></span></p>
+      </section>
+
+      <form data-v="wa" id="bkForm" novalidate class="v grid gap-7" hidden>
+        <button type="button" class="justify-self-start inline-flex items-center gap-1 min-h-[44px] -mt-2 font-bold text-neon" data-go="back"><span aria-hidden="true">‹</span> Indietro</button>
+        <fieldset id="fsSport">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">1</span>Che sport?</legend>
+          <div role="radiogroup" aria-label="Sport" class="grid grid-cols-2 gap-2" id="pSport"></div>
+        </fieldset>
+        <fieldset id="fsDay">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">2</span>Che giorno?</legend>
+          <div role="radiogroup" aria-label="Giorno" class="flex gap-2 overflow-x-auto no-sb -mx-5 px-5 pb-1" id="pDay" data-hscroll></div>
+        </fieldset>
+        <fieldset id="fsTime">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">3</span>A che ora?</legend>
+          <div role="radiogroup" aria-label="Ora" class="grid grid-cols-4 gap-2" id="pTime"></div>
+          <p class="text-sm text-mute mt-2">La disponibilità te la confermiamo noi su WhatsApp.</p>
+        </fieldset>
+        <fieldset id="fsName">
+          <legend class="flex items-center gap-2.5 font-bold text-lg mb-3"><span class="step-n">4</span>Il tuo nome</legend>
+          <label for="fName" class="sr-only">Il tuo nome</label>
+          <input id="fName" class="field" autocomplete="given-name" enterkeyhint="send" placeholder="Es. Marco" maxlength="40">
+        </fieldset>
+      </form>
+    </div>
+
+    <div id="bkFoot" class="px-5 pt-3 border-t border-line bg-coal" style="padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))">
+      <p id="bkSum" class="text-sm text-mute text-center mb-2 min-h-[1.3em] truncate"></p>
+      <button id="bkMain" class="btn btn-neon w-full" type="button">Avanti</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+document.documentElement.classList.add('js');
+
+/* ============ DATI: modifica qui ============ */
+const CONFIG = {
+  whatsapp: '393489707485',          // numero WhatsApp internazionale, senza +
+  phone: '+39 348 970 7485',
+  phone2: '+39 0541 670926',
+  email: 'info@villa-ge.com',
+  // modulo originale del gestionale (usato solo come riserva se il collegamento diretto non risponde)
+  bookingFrame: 'https://www.prenotadainternet.com/VillaGeBookingSite/index_new.htm',
+  // indirizzo dei comandi del gestionale (disponibilità, prenotazione, accesso)
+  bookingApi: 'https://www.prenotadainternet.com/VillaGeBookingSite/bookingcommand_new.php',
+  hours: {1:[17,23],2:[17,23],3:[17,23],4:[17,23],5:[17,23],6:[14,19],0:[14,19]} // 0=dom … 6=sab: [apertura, chiusura]
+};
+const SPORTS = [
+  { id:'bt', name:'Beach Tennis', icon:'bt',   surface:'Sabbia' },
+  { id:'bv', name:'Beach Volley', icon:'bv',   surface:'Sabbia' },
+  { id:'fv', name:'Foot Volley',  icon:'cc',   surface:'Sabbia' },
+  { id:'tn', name:'Tennis',       icon:'tn',   surface:'Erba sintetica' },
+  { id:'c5', name:'Calcetto',     icon:'goal', surface:'Erba sintetica' },
+  { id:'c8', name:'Calciotto',    icon:'goal', surface:'Erba sintetica' }
+];
+const EVENTS = [
+  { d:'2026-11-15', name:'Autumn Cup', sport:'bt', info:'Open · coppie', spots:6 },
+  { d:'2026-11-22', name:'Calcetto Notturno', sport:'c5', info:'Amatori · squadre', spots:2 },
+  { d:'2026-12-06', name:'King of the Beach', sport:'bv', info:'2 vs 2 misto', spots:0 }
+];
+
+/* ============ helpers ============ */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const pad = n => String(n).padStart(2,'0');
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const sport = id => SPORTS.find(s => s.id === id);
+const icon = (id, cls='', size=40) => `<svg class="${cls}" width="${size}" height="${size}" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+const wa = txt => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}`;
+const DAYS = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+const DAYS_L = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+const MONTHS = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 3200); }
+
+/* ============ header, stato apertura, contatti ============ */
+const hdr = $('#hdr'), fab = $('#fab');
+const onScroll = () => hdr.classList.toggle('solid', scrollY > 8);
+addEventListener('scroll', onScroll, { passive:true }); onScroll();
+
+const now = new Date(), [o, c] = CONFIG.hours[now.getDay()], hNow = now.getHours() + now.getMinutes() / 60;
+const isOpen = hNow >= o && hNow < c;
+$('#openTxt').textContent = isOpen ? `Aperto ora · fino alle ${pad(c % 24)}:00` : `Chiuso ora · apre alle ${pad(o)}:00`;
+$('#openDot').style.background = isOpen ? 'var(--neon)' : 'var(--err)';
+$('#hours').innerHTML = [1,2,3,4,5,6,0].map(d => {
+  const [a, b] = CONFIG.hours[d], today = d === now.getDay();
+  return `<li class="flex justify-between gap-4 py-2.5 ${today ? 'text-neon font-bold' : ''}"><span>${DAYS_L[d][0].toUpperCase() + DAYS_L[d].slice(1)}${today ? ' (oggi)' : ''}</span><span>${pad(a)}:00 – ${pad(b % 24)}:00</span></li>`;
+}).join('');
+const hello = wa('Ciao VILLA…GE! Vorrei un\'informazione.');
+['#waHero', '#waInfo', '#fab'].forEach(s => $(s).href = hello);
+[['#tel', CONFIG.phone], ['#tel2', CONFIG.phone2]].forEach(([sel, n]) => { const t = $(sel); t.textContent = n; t.href = 'tel:' + n.replace(/\s/g, ''); });
+$('#mail').textContent = CONFIG.email;
+// Link personale "lg" (arriva nell'email del Villa…ge): se presente nell'indirizzo lo ricordiamo su questo telefono
+const LG_RE = /^[a-f0-9]{32}$/i;
+let lg = new URLSearchParams(location.search).get('lg') || '';
+const lgFromUrl = LG_RE.test(lg);
+if (lgFromUrl) { try { localStorage.setItem('vg-lg', lg); } catch {} }
+else { lg = ''; try { lg = localStorage.getItem('vg-lg') || ''; } catch {} if (!LG_RE.test(lg)) lg = ''; }
+$('#yr').textContent = now.getFullYear();
+
+/* ============ sport ============ */
+$('#tiles').innerHTML = SPORTS.map((s, i) => `
+  <button type="button" class="tile rv" style="--d:${i * 90}ms" data-book="${s.id}" aria-label="Prenota ${s.name}">
+    <span class="ico">${icon(s.icon, 'w-9 h-9', 36)}</span>
+    <span class="font-display font-black text-2xl md:text-3xl uppercase leading-none">${s.name}</span>
+    <span class="text-sm text-mute">${s.surface}</span>
+    <span class="absolute top-4 right-4 text-neon text-xl" aria-hidden="true">→</span>
+  </button>`).join('');
+
+/* ============ tornei ============ */
+$('#events').innerHTML = EVENTS.map((e, i) => {
+  const d = new Date(e.d + 'T12:00'), full = !e.spots;
+  return `<li class="rv rounded-3xl bg-ink border border-line p-5 flex items-center gap-4" style="--d:${i * 90}ms">
+    <div class="w-14 shrink-0 text-center"><p class="font-display font-black text-4xl leading-none num">${d.getDate()}</p><p class="text-sm font-bold text-neon uppercase">${MONTHS[d.getMonth()]}</p></div>
+    <div class="min-w-0 flex-1">
+      <p class="font-bold leading-tight flex items-center gap-2">${icon(sport(e.sport).icon, 'w-5 h-5 text-neon shrink-0', 20)}<span>${e.name}</span></p>
+      <p class="text-sm text-mute mt-1">${e.info}</p>
+      ${full ? '<p class="text-sm font-bold text-mute mt-2">Completo</p>'
+        : `<a target="_blank" rel="noopener" class="inline-flex items-center min-h-[44px] font-bold text-neon" href="${wa(`Ciao! Vorrei iscrivermi al torneo ${e.name} del ${d.getDate()} ${MONTHS[d.getMonth()]}.`)}">Iscriviti · ${e.spots} posti →</a>`}
+    </div></li>`;
+}).join('');
+
+/* ============ contatori ============ */
+if (!reduced) $$('[data-count]').forEach(el => {
+  const n = +el.dataset.count, t0 = performance.now();
+  const f = t => { const p = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); };
+  requestAnimationFrame(f);
+});
+
+/* ============ comparsa allo scroll ============ */
+const rvs = $$('.rv');
+if ('IntersectionObserver' in window && !reduced) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin:'0px 0px -6% 0px', threshold:.05 });
+  rvs.forEach(el => io.observe(el));
+} else rvs.forEach(el => el.classList.add('in'));
+
+/* ============ PRENOTAZIONE ============ */
+const book = $('#book'), sheet = $('#sheet'), body = $('#bkBody'), backdrop = $('.backdrop', book);
+const mainBtn = $('#bkMain');
+let open = false, closing = false, savedY = 0, lastFocus = null, pushed = false;
+
+// Blocco scroll affidabile anche su Safari iPhone
+function lock(){ savedY = scrollY; Object.assign(document.body.style, { position:'fixed', top:`-${savedY}px`, left:'0', right:'0', width:'100%' }); }
+function unlock(){ Object.assign(document.body.style, { position:'', top:'', left:'', right:'', width:'' }); window.scrollTo(0, savedY); }
+
+function openBook(sp){
+  if (open || closing) return;
+  open = true; lastFocus = document.activeElement;
+  if (sp) { bk.sport = sp; st.sport = sp; st.hour = null; }
+  lock();
+  book.hidden = false; fab.classList.add('away');
+  $$('main,header,footer').forEach(el => el.inert = true);
+  sheet.style.transition = ''; sheet.style.transform = ''; backdrop.style.opacity = '';
+  sheet.classList.add('enter'); void sheet.offsetHeight; sheet.classList.remove('enter');
+  // il gesto "indietro" del telefono chiude la maschera invece di lasciare il sito
+  try { history.pushState({ vgBook:1 }, ''); pushed = true; } catch { pushed = false; }
+  start();
+  setTimeout(() => $('#bkClose').focus({ preventScroll:true }), 60);
+}
+function finishClose(){
+  book.hidden = true; backdrop.style.opacity = ''; sheet.style.transition = ''; sheet.style.transform = '';
+  $$('main,header,footer').forEach(el => el.inert = false);
+  unlock(); fab.classList.remove('away'); closing = false;
+  lastFocus && lastFocus.focus && lastFocus.focus({ preventScroll:true });
+}
+function closeBook(opts = {}){
+  if (!open) return;
+  open = false; closing = true; reqId++; busy = false;
+  if (!opts.animated) { sheet.style.transform = ''; sheet.classList.add('enter'); }
+  backdrop.style.opacity = '0';
+  setTimeout(finishClose, reduced ? 0 : 300);
+  if (pushed && !opts.fromHistory) { pushed = false; try { history.back(); } catch {} }
+  pushed = false;
+}
+addEventListener('popstate', () => { if (open) closeBook({ fromHistory:true }); });
+
+/* ---------- collegamento al gestionale (stesse chiamate del modulo attuale) ---------- */
+let sess = '', email = '', busy = false, reqId = 0, lastAction = null, connBlocked = false, flow = null;
+try { email = localStorage.getItem('vg-email') || ''; } catch {}
+document.addEventListener('securitypolicyviolation', e => {
+  if (String(e.blockedURI).includes('prenotadainternet')) connBlocked = true;
+});
+class NetErr extends Error {}
+async function api(cmd, params){
+  const q = ['cmd=' + cmd].concat(Object.entries(params).map(([k, v]) => k + '=' + encodeURIComponent(v))).join('&');
+  const ctrl = 'AbortController' in window ? new AbortController() : null;
+  const timer = setTimeout(() => ctrl && ctrl.abort(), 20000);
+  try {
+    const r = await fetch(CONFIG.bookingApi + '?' + q, { cache:'no-store', credentials:'omit', signal: ctrl ? ctrl.signal : undefined });
+    if (!r.ok) throw new NetErr('http');
+    const txt = await r.text();
+    try { return JSON.parse(txt); } catch { throw new NetErr('json'); }
+  } catch (e) { throw e instanceof NetErr ? e : new NetErr(e && e.name === 'AbortError' ? 'timeout' : 'network'); }
+  finally { clearTimeout(timer); }
+}
+// esegue una chiamata mostrando l'attesa sul pulsante; in caso di rete assente mostra la schermata d'errore
+async function run(action, loadingText){
+  if (busy) return null;
+  busy = true; const my = ++reqId;
+  setMainLoading(loadingText);
+  try { const r = await action(); return my === reqId ? r : null; }
+  catch (e) {
+    await new Promise(r => setTimeout(r, 60));   // lascia arrivare l'eventuale avviso di blocco del browser
+    if (my !== reqId) return null;
+    showError(connBlocked ? 'Collegamento bloccato qui' : 'Non riesco a collegarmi',
+      connBlocked ? 'In questa anteprima il collegamento al gestionale è bloccato. Sul sito pubblicato funziona. Intanto puoi aprire il modulo di prenotazione.'
+                  : 'Controlla la connessione internet e riprova. Se continua, prenota dal modulo o scrivici su WhatsApp.', flow ? (f => () => f)(flow) : null);
+    return null;
+  } finally { if (my === reqId) { busy = false; setMainLoading(null); } }
+}
+// risposte comuni a tutte le chiamate
+function commonOut(r, retry){
+  if (r.OUT === -10 || r.OUT === -11) { showError('Prenotazioni online in pausa', 'Il servizio di prenotazione online in questo momento non è attivo. Riprova più tardi oppure chiamaci.', retry); return true; }
+  if (r.OUT === -25) { sess = ''; toast('Sessione scaduta: rientriamo.'); start(); return true; }
+  return false;
+}
+
+/* ---------- stato prenotazione ---------- */
+const SPORT_ID = { bt:0, bv:1, fv:2, tn:3, c5:4, c8:5 };          // codici del gestionale
+const DURS = [[30,'30 min'],[60,'1 ora'],[90,'1 h 30'],[120,'2 ore']];
+const bk = { sport:null, date:null, time:null, howlong:60, res:null, court:null };
+const ymd = d => d.replaceAll('-', '');
+const fmtT = n => { n = +n; const h = Math.trunc(n / 100); return pad(h) + ':' + pad(n - h * 100); };
+const fmtD = n => { n = String(n); const d = new Date(+n.slice(0,4), +n.slice(4,6) - 1, +n.slice(6,8)); return `${DAYS_L[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]}`; };
+function slotsFor(date){
+  const d = new Date(date + 'T12:00'), [a, b] = CONFIG.hours[d.getDay()], list = [], t = new Date();
+  for (let m = a * 60; m <= b * 60 - 30; m += 30) {
+    const v = pad(Math.floor(m / 60)) + pad(m % 60);
+    const past = date === iso(t) && m <= t.getHours() * 60 + t.getMinutes();
+    list.push({ v, past });
+  }
+  return list;
+}
+function defaultDate(){
+  const t = new Date();
+  if (slotsFor(iso(t)).some(s => !s.past)) return iso(t);
+  t.setDate(t.getDate() + 1); return iso(t);
+}
+
+/* ---------- viste ---------- */
+let view = 'load', waReturn = 'email';
+const BACK = { card:'email', register:'email', sent:'email', result:'book', wa:() => waReturn, error:() => errBack };
+let errBack = null;
+const TITLES = { load:'Prenota', email:'Accedi', card:'Accedi', register:'Accedi', sent:'Accedi', book:'Prenota', result:'Conferma', done:'Fatto', error:'Ops', wa:'WhatsApp' };
+const MAIN = {
+  email:    { txt:'Avanti', fn:() => doEmail() },
+  card:     { txt:'Entra', fn:() => doCard() },
+  register: { txt:'Mandami il link', fn:() => doRegister() },
+  book:     { txt:'Verifica disponibilità', fn:() => doAvail() },
+  result:   { txt:'Conferma prenotazione', fn:() => doBook() },
+  wa:       { txt:'Invia su WhatsApp', fn:() => send(), wa:true }
+};
+function setView(v){
+  if (v === 'wa' && view !== 'wa') waReturn = BACK.wa && view !== 'error' ? view : 'email';
+  view = v;
+  $$('[data-v]', body).forEach(el => el.hidden = el.dataset.v !== v);
+  $('#bkTitle').textContent = TITLES[v] || 'Prenota';
+  $('#bkSub').textContent = v === 'book' && email ? 'Accesso come ' + email : 'Scorri a destra per tornare indietro';
+  $$('[data-email]', body).forEach(el => el.textContent = email);
+  const m = MAIN[v];
+  $('#bkFoot').hidden = !m;
+  if (m) { mainBtn.classList.toggle('btn-wa', !!m.wa); mainBtn.classList.toggle('btn-neon', !m.wa); setMainLoading(null); }
+  if (v === 'book') renderBook();
+  if (v === 'wa') render();
+  updateFoot();
+  body.scrollTop = 0;
+}
+function setMainLoading(txt){
+  const m = MAIN[view]; if (!m) return;
+  mainBtn.disabled = !!txt;
+  mainBtn.innerHTML = txt ? `<span class="spin sm" aria-hidden="true"></span>${txt}`
+    : (m.wa ? '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>' : '') + `<span id="bkMainTxt">${m.txt}</span>`;
+  if (!txt) updateFoot();
+}
+function updateFoot(){
+  const sum = $('#bkSum');
+  if (view === 'book') {
+    const d = bk.date && new Date(bk.date + 'T12:00');
+    sum.textContent = [bk.sport && sport(bk.sport).name, d && `${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]}`, bk.time && fmtT(bk.time), DURS.find(x => x[0] === bk.howlong)[1]].filter(Boolean).join(' · ');
+    mainBtn.classList.toggle('opacity-60', !(bk.sport && bk.time));
+  } else if (view === 'result') {
+    sum.textContent = bk.court ? bk.court.name : 'Scegli il campo';
+    mainBtn.classList.toggle('opacity-60', !bk.court);
+  } else if (view === 'wa') { update(); }
+  else { sum.textContent = ''; mainBtn.classList.remove('opacity-60'); }
+}
+mainBtn.addEventListener('click', () => { const m = MAIN[view]; if (m && !busy) m.fn(); });
+function showError(title, msg, retry){
+  errBack = ['book','result','email','card','register'].includes(view) ? view : null;
+  lastAction = retry || null;
+  $('#errTitle').textContent = title; $('#errMsg').textContent = msg;
+  $('#errRetry').hidden = !retry;
+  setView('error');
+}
+function fieldErr(id, input, msg){
+  const e = $(id); e.textContent = msg || ''; e.hidden = !msg;
+  if (input) { $(input).setAttribute('aria-invalid', msg ? 'true' : 'false'); if (msg) $(input).focus(); }
+}
+
+/* ---------- flusso ---------- */
+async function start(){
+  flow = start;
+  if (sess) return goBook();
+  if (lg) {
+    setView('load'); $('#loadMsg').textContent = 'Ti stiamo riconoscendo…';
+    const r = await run(() => api('LGNLG', { lg }));
+    if (!r) return;
+    if (r.OUT === 0 && r.SESS) { sess = r.SESS; return goBook(); }
+    if (commonOut(r, () => start)) return;
+    lg = ''; try { localStorage.removeItem('vg-lg'); } catch {}
+    toast('Il link non è più valido: entra con la tua email.');
+  }
+  setView('email');
+  $('#fEmail').value = email;
+}
+async function doEmail(){
+  flow = doEmail;
+  const v = $('#fEmail').value.trim();
+  // chi incolla qui il link ricevuto per email entra direttamente
+  const pasted = readCode(v);
+  if (pasted) { lg = pasted; try { localStorage.setItem('vg-lg', lg); } catch {} $('#fEmail').value = ''; return start(); }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return fieldErr('#eEmail', '#fEmail', 'Scrivi un indirizzo email valido, ad esempio nome@email.it');
+  fieldErr('#eEmail', '#fEmail', '');
+  $('#fEmail').blur();
+  const r = await run(() => api('CCKMLSNDLNK', { email:v }), 'Controllo…');
+  if (!r) return;
+  if (r.OUT === 0 && r.EMAIL && r.EMAIL.length >= 3) {
+    email = r.EMAIL; try { localStorage.setItem('vg-email', email); } catch {}
+    if (r.EMAILTYPE === 1) { setView('card'); setTimeout(() => $('#fCard').focus(), 250); }
+    else if (r.EMAILTYPE === -1) setView('sent');
+    else { setView('register'); setTimeout(() => $('#fRegName').focus(), 250); }
+    return;
+  }
+  if (commonOut(r, () => doEmail)) return;
+  if (r.OUT === -23) return fieldErr('#eEmail', '#fEmail', 'Questo indirizzo email non è valido.');
+  showError('Email non riconosciuta', r.DESC ? 'Il sistema risponde: ' + r.DESC : 'Riprova tra poco.', () => doEmail);
+}
+async function doCard(){
+  flow = doCard;
+  const c = $('#fCard').value.trim();
+  if (!c) return fieldErr('#eCard', '#fCard', 'Scrivi il numero della tua tessera.');
+  fieldErr('#eCard', '#fCard', ''); $('#fCard').blur();
+  const r = await run(() => api('LOGIN', { email, cardcode:c }), 'Entro…');
+  if (!r) return;
+  if (r.OUT === 0 && r.SESS) { sess = r.SESS; return goBook(); }
+  if (commonOut(r, () => doCard)) return;
+  if ([-23, 117, 120].includes(r.OUT)) return fieldErr('#eCard', '#fCard', 'Email o numero tessera non validi. Controlla e riprova.');
+  fieldErr('#eCard', '#fCard', r.DESC || 'Accesso non riuscito, riprova.');
+}
+async function doRemember(){
+  flow = doRemember;
+  const r = await run(() => api('REMEMBER', { email }));
+  if (!r) return;
+  if (r.OUT === 0 && r.EMAIL === -1) return toast('Ti abbiamo mandato il numero tessera per email.');
+  if (commonOut(r, () => doRemember)) return;
+  fieldErr('#eCard', null, 'Non siamo riusciti a inviare il numero: contatta il Villa…ge.');
+}
+async function doRegister(){
+  flow = doRegister;
+  const name = $('#fRegName').value.trim(), surname = $('#fRegSurname').value.trim(), tel = $('#fRegTel').value.trim();
+  $$('#fRegForm .field').forEach(f => f.setAttribute('aria-invalid', 'false'));
+  if (!name) { $('#fRegName').setAttribute('aria-invalid', 'true'); return fieldErr('#eReg', '#fRegName', 'Scrivi il tuo nome.'); }
+  if (tel.replace(/\D/g, '').length < 6) { $('#fRegTel').setAttribute('aria-invalid', 'true'); return fieldErr('#eReg', '#fRegTel', 'Scrivi un numero di cellulare valido.'); }
+  fieldErr('#eReg', null, ''); document.activeElement && document.activeElement.blur();
+  const r = await run(() => api('SNDLNKTGST', { email, name, surname, tel }), 'Invio…');
+  if (!r) return;
+  if (r.OUT === 0) return setView('sent');
+  if (commonOut(r, () => doRegister)) return;
+  if (r.OUT === -23) { setView('email'); return fieldErr('#eEmail', '#fEmail', 'Questo indirizzo email non è valido.'); }
+  fieldErr('#eReg', null, r.DESC ? 'Invio non riuscito: ' + r.DESC : 'Invio non riuscito, riprova.');
+}
+// codice dall'email: accetta il link intero o solo il codice di 32 caratteri
+function readCode(v){
+  const m = String(v).match(/[?&]lg=([a-f0-9]{32})/i) || String(v).trim().match(/^([a-f0-9]{32})$/i);
+  return m ? m[1].toLowerCase() : '';
+}
+function goBook(){
+  if (!bk.date || bk.date < iso(new Date())) bk.date = defaultDate();
+  setView('book');
+}
+async function doAvail(){
+  flow = doAvail;
+  if (!bk.sport) return flash('#bfSport');
+  if (!bk.time) return flash('#bfTime');
+  fieldErr('#eBook', null, '');
+  const r = await run(() => api('AVAILABILITY', { session:sess, date:ymd(bk.date), idsport:SPORT_ID[bk.sport], time:bk.time, howlong:bk.howlong }), 'Cerco un campo…');
+  if (!r) return;
+  if (r.OUT === 0) {
+    if (r.STATE === 0 || !r.BASE || !r.BASE[0] || !r.FIELDS || !r.FIELDS.length) {
+      fieldErr('#eBook', null, 'Nessun campo libero a quell’ora, e nemmeno vicino. Prova un altro orario o un altro giorno.');
+      return goTo('#eBook', false);
+    }
+    const b = r.BASE[0];
+    bk.res = { near: r.STATE === 2, date:b[0], from:b[1], to:b[2], dur:b[3], fields: r.FIELDS.map(f => courtInfo(f.ID[0], f.ID[1])) };
+    bk.court = bk.res.fields.length === 1 ? bk.res.fields[0] : null;
+    return showResult();
+  }
+  if (commonOut(r, () => doAvail)) return;
+  const msg = r.OUT === 107 ? 'Questo orario è troppo vicino a adesso. Scegli un orario più avanti.'
+            : r.OUT === 110 ? 'Così si va oltre la mezzanotte. Scegli un orario prima o una durata più breve.'
+            : 'Verifica non riuscita' + (r.DESC ? ': ' + r.DESC : '.');
+  fieldErr('#eBook', null, msg); goTo('#eBook', false);
+}
+// Il gestionale manda i nomi dei campi con codici HTML (es. "met&agrave;"): li decodifichiamo in modo sicuro
+// e rimandiamo indietro il nome esattamente come lo faceva il modulo originale.
+function courtInfo(id, raw){
+  const tpl = document.createElement('template');
+  tpl.innerHTML = String(raw);
+  const label = tpl.innerHTML, text = (tpl.content.textContent || '').trim().replace(/^sul\s+/i, '');
+  return { id, label, name: text.charAt(0).toUpperCase() + text.slice(1) };
+}
+function showResult(){
+  const x = bk.res;
+  $('#resKicker').textContent = x.near ? 'Libero a un orario vicino' : 'Campo libero';
+  $('#resWhen').textContent = `${fmtD(x.date)}, ${fmtT(x.from)} – ${fmtT(x.to)}`;
+  $('#resInfo').textContent = (x.near ? `Alle ${fmtT(bk.time)} è tutto occupato: questo è l’orario libero più vicino. ` : '') + `${sport(bk.sport).name} · ${x.dur} minuti.`;
+  $('#bfCourt').hidden = x.fields.length < 2 && !!bk.court;
+  $('#bCourt').innerHTML = x.fields.map((f, i) => `<button type="button" role="radio" class="pick" aria-checked="${bk.court && bk.court.id === f.id}" data-court="${i}">
+    ${icon(sport(bk.sport).icon, 'ico')}<span class="font-bold">${esc(f.name)}</span></button>`).join('');
+  setView('result');
+}
+async function doBook(){
+  flow = doBook;
+  if (!bk.court) return flash('#bfCourt');
+  const x = bk.res;
+  const r = await run(() => api('BOOKING', { session:sess, date:ymd(bk.date), idsport:SPORT_ID[bk.sport], time:x.from, howlong:bk.howlong, idcourt:bk.court.id, desccourt:bk.court.label }), 'Prenoto…');
+  if (!r) return;
+  if (r.OUT === 0) {
+    sess = '';   // il gestionale chiude la sessione dopo ogni prenotazione
+    $('#doneInfo').innerHTML = [['Sport', sport(bk.sport).name], ['Quando', `${fmtD(x.date)}, ${fmtT(x.from)} – ${fmtT(x.to)}`], ['Campo', bk.court.name]]
+      .map(([k, v]) => `<p class="flex justify-between gap-4"><span class="text-mute">${k}</span><b class="text-right">${esc(v)}</b></p>`).join('');
+    $('#doneMail').textContent = r.EMAIL === -1 ? 'Ti abbiamo mandato un promemoria per email.' : '';
+    bk.time = null; bk.res = null; bk.court = null;
+    return setView('done');
+  }
+  if (commonOut(r, () => doBook)) return;
+  showError('Prenotazione non riuscita', (r.DESC ? 'Il sistema risponde: ' + r.DESC + '. ' : '') + 'Il campo potrebbe essere appena stato preso: riprova con la verifica.', null);
+}
+function logout(){
+  sess = ''; lg = ''; email = '';
+  try { localStorage.removeItem('vg-lg'); localStorage.removeItem('vg-email'); } catch {}
+  $('#fEmail').value = ''; setView('email');
+}
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+function flash(sel){ goTo(sel); }
+
+/* ---------- disegno scelte ---------- */
+function sportPicks(sel){ return SPORTS.map(s => `<button type="button" role="radio" class="pick" aria-checked="${sel === s.id}" data-s="${s.id}">
+  ${icon(s.icon, 'ico')}<span class="min-w-0"><span class="block font-bold leading-tight">${s.name}</span><span class="block text-sm text-mute">${s.surface}</span></span></button>`).join(''); }
+function dayButtons(sel, n){
+  const today = new Date();
+  return Array.from({ length:n }, (_, i) => { const d = new Date(today); d.setDate(d.getDate() + i); return d; }).map((d, i) =>
+    `<button type="button" role="radio" class="day" aria-checked="${iso(d) === sel}" data-d="${iso(d)}">
+      <span class="text-sm font-bold">${i === 0 ? 'Oggi' : i === 1 ? 'Domani' : DAYS[d.getDay()]}</span>
+      <span class="font-display font-black text-2xl leading-none num">${d.getDate()} <span class="text-base">${MONTHS[d.getMonth()]}</span></span>
+    </button>`).join('');
+}
+function renderBook(){
+  $('#bSport').innerHTML = sportPicks(bk.sport);
+  $('#bDay').innerHTML = dayButtons(bk.date, 14);
+  const slots = slotsFor(bk.date);
+  if (bk.time && !slots.some(s => s.v === bk.time && !s.past)) bk.time = null;
+  $('#bTime').innerHTML = slots.some(s => !s.past)
+    ? slots.map(s => `<button type="button" role="radio" class="slot num" aria-checked="${bk.time === s.v}" data-t="${s.v}" ${s.past ? 'disabled aria-label="' + fmtT(s.v) + ' passato"' : ''}>${fmtT(s.v)}</button>`).join('')
+    : '<p class="col-span-4 text-mute py-3">Per questo giorno non ci sono più orari. Scegli un altro giorno qui sopra.</p>';
+  $('#bDur').innerHTML = DURS.map(([m, l]) => `<button type="button" role="radio" class="slot !text-base" aria-checked="${bk.howlong === m}" data-dur="${m}">${l}</button>`).join('');
+  $('#bfSport').classList.toggle('done', !!bk.sport);
+  $('#bfDay').classList.add('done');
+  $('#bfTime').classList.toggle('done', !!bk.time);
+  $('#bfDur').classList.add('done');
+  updateFoot();
+  const sd = $('#bDay [aria-checked="true"]'); sd && sd.scrollIntoView({ block:'nearest', inline:'center' });
+}
+
+/* ---------- WhatsApp (alternativa) ---------- */
+const st = { sport:null, date:iso(now), hour:null, name:'' };
+try { st.name = localStorage.getItem('vg-name') || ''; } catch {}
+function waHours(date){
+  const d = new Date(date + 'T12:00'), [a, b] = CONFIG.hours[d.getDay()], t = new Date(), list = [];
+  for (let h = a; h < b; h++) list.push({ h, past: date === iso(t) && h <= t.getHours() });
+  return list;
+}
+function render(){
+  if (st.date < iso(new Date())) st.date = iso(new Date());
+  if (st.date === iso(new Date()) && !waHours(st.date).some(x => !x.past)) { const t = new Date(); t.setDate(t.getDate() + 1); st.date = iso(t); }
+  $('#pSport').innerHTML = sportPicks(st.sport);
+  $('#pDay').innerHTML = dayButtons(st.date, 7);
+  const hrs = waHours(st.date);
+  if (st.hour != null && !hrs.some(x => x.h === st.hour && !x.past)) st.hour = null;
+  $('#pTime').innerHTML = hrs.map(x => `<button type="button" role="radio" class="slot num" aria-checked="${st.hour === x.h}" data-h="${x.h}" ${x.past ? 'disabled' : ''}>${pad(x.h)}:00</button>`).join('');
+  if (document.activeElement !== $('#fName')) $('#fName').value = st.name;
+  update();
+}
+function update(){
+  const ok = { sport:!!st.sport, time:st.hour != null, name:st.name.trim().length >= 2 };
+  $('#fsSport').classList.toggle('done', ok.sport);
+  $('#fsDay').classList.add('done');
+  $('#fsTime').classList.toggle('done', ok.time);
+  $('#fsName').classList.toggle('done', ok.name);
+  if (view !== 'wa') return ok;
+  const d = new Date(st.date + 'T12:00');
+  $('#bkSum').textContent = [st.sport && sport(st.sport).name, `${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]}`, ok.time && `ore ${pad(st.hour)}:00`].filter(Boolean).join(' · ');
+  const t = $('#bkMainTxt');
+  if (t) t.textContent = !ok.sport ? 'Scegli lo sport' : !ok.time ? 'Scegli l’orario' : !ok.name ? 'Scrivi il tuo nome' : 'Invia su WhatsApp';
+  mainBtn.classList.toggle('opacity-60', !(ok.sport && ok.time && ok.name));
+  return ok;
+}
+function send(){
+  const ok = update();
+  if (!ok.sport) return goTo('#fsSport');
+  if (!ok.time) return goTo('#fsTime');
+  if (!ok.name) { goTo('#fsName'); setTimeout(() => $('#fName').focus(), 300); return; }
+  try { localStorage.setItem('vg-name', st.name.trim()); } catch {}
+  const d = new Date(st.date + 'T12:00');
+  const a = document.createElement('a');
+  a.href = wa(`Ciao VILLA…GE! Sono ${st.name.trim()}.\nVorrei prenotare ${sport(st.sport).name} ${DAYS_L[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]} alle ${pad(st.hour)}:00.\nÈ libero?`);
+  a.target = '_blank'; a.rel = 'noopener';
+  document.body.appendChild(a); a.click(); a.remove();
+  st.hour = null; closeBook();
+  toast('Premi Invia nella chat WhatsApp: ti confermiamo noi.');
+}
+
+/* ---------- tocchi dentro la maschera ---------- */
+body.addEventListener('click', e => {
+  const g = e.target.closest('[data-go]'), act = e.target.closest('[data-act]');
+  if (g) { const t = g.dataset.go === 'back' ? (typeof BACK[view] === 'function' ? BACK[view]() : BACK[view]) : g.dataset.go; if (t) setView(t); return; }
+  if (act) {
+    const a = act.dataset.act;
+    if (a === 'remember') doRemember();
+    else if (a === 'logout') logout();
+    else if (a === 'again') start();
+    else if (a === 'retry' && lastAction) { const f = lastAction(); if (errBack) setView(errBack); else setView('load'); if (typeof f === 'function') f(); }
+    return;
+  }
+  const s = e.target.closest('[data-s]'), d = e.target.closest('[data-d]');
+  if (view === 'book') {
+    const t = e.target.closest('[data-t]'), du = e.target.closest('[data-dur]');
+    if (s) { bk.sport = s.dataset.s; renderBook(); fieldErr('#eBook', null, ''); if (!bk.time) setTimeout(() => goTo('#bfDay', false), 150); }
+    else if (d) { bk.date = d.dataset.d; renderBook(); fieldErr('#eBook', null, ''); }
+    else if (t && !t.disabled) { bk.time = t.dataset.t; renderBook(); fieldErr('#eBook', null, ''); }
+    else if (du) { bk.howlong = +du.dataset.dur; renderBook(); fieldErr('#eBook', null, ''); }
+  } else if (view === 'result') {
+    const c = e.target.closest('[data-court]');
+    if (c) { bk.court = bk.res.fields[+c.dataset.court]; $$('#bCourt [data-court]').forEach(b => b.setAttribute('aria-checked', b === c)); updateFoot(); }
+  } else if (view === 'wa') {
+    const h = e.target.closest('[data-h]');
+    if (s) { st.sport = s.dataset.s; render(); if (st.hour == null) setTimeout(() => goTo('#fsDay', false), 150); }
+    else if (d) { st.date = d.dataset.d; render(); }
+    else if (h && !h.disabled) { st.hour = +h.dataset.h; render(); if (st.name.trim().length < 2) setTimeout(() => goTo('#fsName', false), 150); }
+  }
+});
+$('#fName').addEventListener('input', e => { st.name = e.target.value; update(); });
+// Invio da tastiera = pulsante principale
+[['#fEmailForm', doEmail], ['#fCardForm', doCard], ['#fRegForm', doRegister], ['#fBook', doAvail], ['#bkForm', send]].forEach(([f, fn]) =>
+  $(f).addEventListener('submit', e => { e.preventDefault(); if (!busy) fn(); }));
+$('#fRegForm').addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const order = ['fRegName', 'fRegSurname', 'fRegTel'], i = order.indexOf(e.target.id);
+  if (i > -1 && i < 2) { e.preventDefault(); $('#' + order[i + 1]).focus(); }
+});
+$$('[data-phone]').forEach(el => el.textContent = CONFIG.phone);
+$('#errWa').href = hello;
+$('#errClassic').href = CONFIG.bookingFrame + (lg ? '?lg=' + encodeURIComponent(lg) : '');
+
+function goTo(sel, doFlash = true){
+  const el = $(sel); if (!el) return;
+  const top = el.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop - 12;
+  body.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
+  if (doFlash) { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+}
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-book]');
+  if (b) { e.preventDefault(); openBook(b.dataset.book || null); return; }
+  if (open && e.target.closest('[data-close]')) closeBook();
+});
+document.addEventListener('keydown', e => {
+  if (!open) return;
+  if (e.key === 'Escape') closeBook();
+  if (e.key === 'Tab') {
+    const f = $$('button:not([disabled]),input,a[href]', sheet).filter(x => x.offsetParent);
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f.at(-1).focus(); }
+    else if (!e.shiftKey && document.activeElement === f.at(-1)) { e.preventDefault(); f[0].focus(); }
+  }
+});
+
+/* Swipe: dito da sinistra a destra = indietro (o chiude), giù dalla parte alta = chiude */
+(function gestures(){
+  let x0 = null, y0, t0, mode = null, fromHead = false, skipX = false, hrow = null;
+  const reset = () => { sheet.style.transition = ''; sheet.style.transform = ''; backdrop.style.opacity = ''; };
+  sheet.addEventListener('touchstart', e => {
+    if (e.touches.length > 1) { x0 = null; return; }
+    const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; t0 = Date.now(); mode = null;
+    fromHead = !!e.target.closest('#sheetHead');
+    hrow = e.target.closest('[data-hscroll]');
+    skipX = !!hrow && x0 > 36 && hrow.scrollLeft > 2;
+  }, { passive:true });
+  sheet.addEventListener('touchmove', e => {
+    if (x0 == null || mode === 'none') return;
+    const t = e.touches[0], dx = t.clientX - x0, dy = t.clientY - y0;
+    if (!mode) {
+      if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+      if (hrow && x0 > 36 && hrow.scrollLeft > 2) skipX = true;
+      if (dx > 0 && Math.abs(dx) > Math.abs(dy) * 1.2 && !skipX) mode = 'x';
+      else if (dy > 0 && Math.abs(dy) > Math.abs(dx) && fromHead) mode = 'y';
+      else { mode = 'none'; return; }
+      sheet.style.transition = 'none';
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    }
+    if (e.cancelable) e.preventDefault();
+    const d = Math.max(0, mode === 'x' ? dx : dy);
+    sheet.style.transform = mode === 'x' ? `translateX(${d}px)` : `translateY(${d}px)`;
+    backdrop.style.opacity = String(Math.max(0, 1 - d / (mode === 'x' ? innerWidth : innerHeight)));
+  }, { passive:false });
+  const end = e => {
+    if (x0 == null) return;
+    const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0;
+    const v = (mode === 'x' ? dx : dy) / Math.max(1, Date.now() - t0);
+    const go = (mode === 'x' && (dx > Math.min(120, innerWidth * .3) || (v > .5 && dx > 40))) || (mode === 'y' && (dy > 120 || (v > .5 && dy > 40)));
+    const back = mode === 'x' && go && !busy ? (typeof BACK[view] === 'function' ? BACK[view]() : BACK[view]) : null;
+    if (back) { reset(); setView(back); }
+    else if (go) {
+      sheet.style.transition = '';
+      sheet.style.transform = mode === 'x' ? 'translateX(105%)' : 'translateY(105%)';
+      closeBook({ animated:true });
+    } else if (mode === 'x' || mode === 'y') reset();
+    x0 = null; mode = null;
+  };
+  sheet.addEventListener('touchend', end);
+  sheet.addEventListener('touchcancel', () => { if (mode === 'x' || mode === 'y') reset(); x0 = null; mode = null; });
+})();
+
+// arrivo dal link dell'email: apri subito la prenotazione (e togli il codice personale dalla barra degli indirizzi)
+if (lgFromUrl) {
+  try { history.replaceState(null, '', location.pathname + location.hash); } catch {}
+  setTimeout(() => openBook(null), 300);
+}
+
+})();
+</script>
+</body>
+</html>
