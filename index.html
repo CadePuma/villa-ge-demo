@@ -40,6 +40,14 @@ h1,h2,h3{font-family:var(--f-display);text-transform:uppercase;line-height:.95;t
 .btn-wa{background:var(--wa);color:#06210f}
 .btn-line{border:1.5px solid var(--line);color:var(--bone)}
 .btn-line:hover{border-color:var(--neon)}
+.stat-l{line-height:1.25;margin-top:.3rem}
+.stat-u{font-size:.55em;margin-left:.08em}
+.map{position:relative;aspect-ratio:4/3;max-width:100%;border-radius:18px;overflow:hidden;border:1.5px solid var(--line);background:var(--ash)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map-ph{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:.35rem;padding:1rem;text-align:center;color:var(--bone);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:28px 28px}
+.map-ph svg{color:var(--neon)}
+.social-k{margin-top:.5rem}
+.social{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 
 #hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background-color .25s,border-color .25s;border-bottom:1px solid transparent}
 #hdr.solid{background:rgba(10,11,8,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
@@ -175,9 +183,9 @@ fieldset{min-width:0;border:0;padding:0;margin:0}.no-sb::-webkit-scrollbar{displ
         <a class="btn btn-line" id="waHero" target="_blank" rel="noopener"><svg class="w-5 h-5 text-[#25D366]" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Scrivici</a>
       </div>
       <dl class="mt-12 grid grid-cols-3 gap-4 max-w-md">
-        <div class="flex flex-col-reverse"><dt class="text-sm text-mute">sport</dt><dd class="font-display font-black text-4xl num"><span data-count="6">6</span></dd></div>
-        <div class="flex flex-col-reverse"><dt class="text-sm text-mute">superfici</dt><dd class="font-display font-black text-4xl num"><span data-count="2">2</span></dd></div>
-        <div class="flex flex-col-reverse"><dt class="text-sm text-mute">luci fino alle</dt><dd class="font-display font-black text-4xl num"><span data-count="23">23</span>:00</dd></div>
+        <div class="flex flex-col-reverse"><dt class="text-sm text-mute stat-l">sabbia dei campi beach</dt><dd class="font-display font-black text-4xl num">Nilo</dd></div>
+        <div class="flex flex-col-reverse"><dt class="text-sm text-mute stat-l">sport</dt><dd class="font-display font-black text-4xl num"><span data-count="6">6</span></dd></div>
+        <div class="flex flex-col-reverse"><dt class="text-sm text-mute stat-l">pressostruttura, la più grande d’Europa</dt><dd class="font-display font-black text-4xl num"><span data-count="2100">2.100</span><span class="stat-u">m²</span></dd></div>
       </dl>
     </div>
   </section>
@@ -216,13 +224,25 @@ fieldset{min-width:0;border:0;padding:0;margin:0}.no-sb::-webkit-scrollbar{displ
         <div class="rv rounded-3xl bg-coal border border-line p-5 md:p-6 grid gap-3 content-start" style="--d:100ms">
           <h3 class="text-2xl font-black">Dove siamo</h3>
           <p class="text-mute -mt-1">Via Casetti, Parco Marecchia<br>Villa Verucchio (RN)</p>
+          <div class="map">
+            <a class="map-ph" href="https://www.google.com/maps/search/?api=1&amp;query=Villa...ge+Villa+Verucchio&amp;query_place_id=ChIJpxUPPUOVLBMRpQTzCNiUAZM" target="_blank" rel="noopener">
+              <svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+              <span class="font-bold">Via Casetti 2229 · Villa Verucchio</span><span class="text-sm text-mute">Tocca per aprire la cartina</span>
+            </a>
+            <iframe id="mapFrame" title="Cartina: VILLA…GE al Parco Marecchia di Villa Verucchio" src="https://maps.google.com/maps?q=Villa...ge+Villa+Verucchio,+Via+Casetti+2229,+47826+Verucchio+RN&amp;z=15&amp;hl=it&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+          <a class="btn btn-line w-full" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Villa...ge+Villa+Verucchio&amp;query_place_id=ChIJpxUPPUOVLBMRpQTzCNiUAZM">Apri in Maps</a>
           <a class="btn btn-wa w-full" id="waInfo" target="_blank" rel="noopener"><svg class="w-6 h-6" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Scrivici su WhatsApp</a>
-          <a class="btn btn-line w-full" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Villa-ge+Via+Casetti+Villa+Verucchio+RN">Apri in Maps</a>
           <ul class="grid gap-1 text-sm text-mute text-center">
             <li>Cellulare: <a id="tel" class="font-semibold text-bone select-all"></a></li>
             <li>Fisso: <a id="tel2" class="font-semibold text-bone select-all"></a></li>
             <li>Email: <span id="mail" class="font-semibold text-bone select-all"></span></li>
           </ul>
+          <p class="kicker social-k">Seguici</p>
+          <div class="social">
+            <a class="btn btn-line" target="_blank" rel="noopener" href="https://www.instagram.com/villagevillaverucchio/">Instagram <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-line" target="_blank" rel="noopener" href="https://www.facebook.com/Village-Centro-Sportivo-1710846755802521/">Facebook <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -507,7 +527,7 @@ $('#events').innerHTML = EVENTS.map((e, i) => {
 /* ============ contatori ============ */
 if (!reduced) $$('[data-count]').forEach(el => {
   const n = +el.dataset.count, t0 = performance.now();
-  const f = t => { const p = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); };
+  const f = t => { const p = Math.min(1, (t - t0) / 1200); el.textContent = String(Math.round(n * (1 - Math.pow(1 - p, 3)))).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); if (p < 1) requestAnimationFrame(f); };
   requestAnimationFrame(f);
 });
 
@@ -562,6 +582,7 @@ addEventListener('popstate', () => { if (open) closeBook({ fromHistory:true }); 
 let sess = '', email = '', busy = false, reqId = 0, lastAction = null, connBlocked = false, flow = null;
 try { email = localStorage.getItem('vg-email') || ''; } catch {}
 document.addEventListener('securitypolicyviolation', e => {
+  if (/google\.com/.test(String(e.blockedURI))) { const m = document.getElementById('mapFrame'); if (m) m.hidden = true; }
   if (String(e.blockedURI).includes('prenotadainternet')) connBlocked = true;
 });
 class NetErr extends Error {}
